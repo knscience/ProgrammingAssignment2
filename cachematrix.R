@@ -1,31 +1,28 @@
-## Put comments here that give an overall description of what your
-## functions do
-
 ## makeCashMatrix allocates a matrix x 
 ## cacheSolve depects an inverse of a matrix if it is available,otherwise calculates the inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
-  inv <- NULL
+  inverse <- NULL
   set <- function(y){
     x <<- y
-    inv <<- NULL
+    inverse <<- NULL
   }
   get <- function() x
-  setinv <- function(Inverse) inv <<- Inverse
-  getinv <- function() inv
-  list(set=set,get=get,setinv=setinv,getinv=getinv)
+  setinverse <- function(Inverse) inverse <<- Inverse
+  getinverse <- function() inverse
+  list(set=set,get=get,setinverse=setinverse,getinverse=getinverse)
 }
 
 ## cacheSolve calculates matrix inverse
 cacheSolve <- function(x, ...) {
-  inverse <- x$getinv()
-  if(!is.null(inv)){
+  inverse <- x$getinverse()
+  if(!is.null(inverse)){
     message("getting inverse matrix data")
-    return(inv)
+    return(inverse)
   }
   message("inverse is now calculated")
-data <- x$get()
-inv <- solve(data, ...)
-x$setinv(inv)
-inv
+  data <- x$get()
+  inverse <- solve(data, ...)
+  x$setinverse(inverse)
+  inverse
 }
